@@ -1,0 +1,68 @@
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.vbprojAssemblyReference.cache
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\obj\Debug\Pet_Management_Solution.frmMain.resources
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\obj\Debug\Pet_Management_Solution.Resources.resources
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.vbproj.GenerateResource.cache
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.vbproj.CoreCompileInputs.cache
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\Pet Management Solution.exe.config
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\Pet Management Solution.exe
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\Pet Management Solution.pdb
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\Pet Management Solution.xml
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\MySql.Data.dll
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\Google.Protobuf.dll
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\Zstandard.Net.dll
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\Renci.SshNet.dll
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\System.Buffers.dll
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\System.Memory.dll
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\bin\Debug\MySql.Data.xml
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.exe.config
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.vbproj.CopyComplete
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.exe
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.xml
+C:\Users\cha\Source\Repos\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.pdb
+C:\Users\cha\Desktop\Pet Management Solution - Copy\Pet Management Solution\bin\Debug\Pet Management Solution.exe.config
+C:\Users\cha\Desktop\Pet Management Solution - Copy\Pet Management Solution\bin\Debug\Pet Management Solution.exe
+C:\Users\cha\Desktop\Pet Management Solution - Copy\Pet Management Solution\bin\Debug\Pet Management Solution.pdb
+C:\Users\cha\Desktop\Pet Management Solution - Copy\Pet Management Solution\bin\Debug\Pet Management Solution.xml
+C:\Users\cha\Desktop\Pet Management Solution - Copy\Pet Management Solution\obj\Debug\Pet Management Solution.vbprojAssemblyReference.cache
+C:\Users\cha\Desktop\Pet Management Solution - Copy\Pet Management Solution\obj\Debug\Pet_Management_Solution.frmMain.resources
+C:\Users\cha\Desktop\Pet Management Solution - Copy\Pet Management Solution\obj\Debug\Pet_Management_Solution.Resources.resources
+C:\Users\cha\Desktop\Pet Management Solution - Copy\Pet Management Solution\obj\Debug\Pet Management Solution.vbproj.GenerateResource.cache
+C:\Users\cha\Desktop\Pet Management Solution - Copy\Pet Management Solution\obj\Debug\Pet Management Solution.vbproj.CoreCompileInputs.cache
+C:\Users\cha\Desktop\Pet Management Solution - Copy\Pet Management Solution\obj\Debug\Pet Management Solution.exe
+C:\Users\cha\Desktop\Pet Management Solution - Copy\Pet Management Solution\obj\Debug\Pet Management Solution.xml
+C:\Users\cha\Desktop\Pet Management Solution - Copy\Pet Management Solution\obj\Debug\Pet Management Solution.pdb
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\Pet Management Solution.exe.config
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\Pet Management Solution.exe
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\Pet Management Solution.pdb
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\Pet Management Solution.xml
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\MySql.Data.dll
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\Google.Protobuf.dll
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\Zstandard.Net.dll
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\Renci.SshNet.dll
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\System.Buffers.dll
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\System.Memory.dll
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\MySql.Data.xml
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.vbprojAssemblyReference.cache
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.exe.config
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet_Management_Solution.frmMain.resources
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet_Management_Solution.Resources.resources
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.vbproj.GenerateResource.cache
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.vbproj.CoreCompileInputs.cache
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.vbproj.CopyComplete
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.exe
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.xml
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.pdb
