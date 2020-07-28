@@ -4,26 +4,45 @@
         Dim strName As String = txtOwnerName.Text
         Dim strAddress As String = txtAddress.Text
         Dim strPhone As String = txtPhone.Text
+        If btnPersonAdd.Text.Contains("Add") Then
+            Try
+                If String.IsNullOrEmpty(strName.ToString()) Then
+                    MessageBox.Show("Please Fill All", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                ElseIf String.IsNullOrEmpty(strAddress.ToString()) Then
+                    MessageBox.Show("Please Fill All", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                ElseIf String.IsNullOrEmpty(strPhone.ToString()) Then
+                    MessageBox.Show("Please Fill All", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Else
+                    strQuery = $"INSERT INTO tblowner VALUES ({textID.Text}, '{strName }', '{strAddress}', '{strPhone}', 'Active') "
+                    'MsgBox(strQuery)
+                    SQLManager(strQuery, "Record saved.")
+                    ExecuteCreateLog("PetOwner Form", "pet owner", Val(textID.Text))
+                    btnPlus.PerformClick()
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Error: Save() " & ex.Message, "Pet DBMS",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error)
 
-        Try
-
-            If String.IsNullOrEmpty(strName.ToString()) Then
-                MessageBox.Show("Please Fill All", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            ElseIf String.IsNullOrEmpty(strAddress.ToString()) Then
-                MessageBox.Show("Please Fill All", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            ElseIf String.IsNullOrEmpty(strPhone.toString()) Then
-                MessageBox.Show("Please Fill All", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Else
-                strQuery = "INSERT INTO tblowner (ownerName,ownerAddress,ownerContactNumber ) VALUES ('" & strName & "', '" & strAddress & "', '" & strPhone & "') "
-                'MsgBox(strQuery)
-                SQLManager(strQuery, "Record saved.")
-                Me.Close()
-            End If
-
-        Catch ex As Exception
-            MessageBox.Show("Error: Save() " & ex.Message, "Pet DBMS",
-                MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+            End Try
+        Else
+            Try
+                If String.IsNullOrEmpty(strName.ToString()) Then
+                    MessageBox.Show("Please Fill All", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                ElseIf String.IsNullOrEmpty(strAddress.ToString()) Then
+                    MessageBox.Show("Please Fill All", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                ElseIf String.IsNullOrEmpty(strPhone.ToString()) Then
+                    MessageBox.Show("Please Fill All", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Else
+                    strQuery = $"UPDATE tblowner SET ownerName='{strName}', ownerAddress='{strAddress}', ownerContactNumber='{strPhone}' WHERE ownerID ={textID.Text} "
+                    'MsgBox(strQuery)
+                    SQLManager(strQuery, "Record updated.")
+                    btnPlus.PerformClick()
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Error: Save() " & ex.Message, "Pet DBMS",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End If
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
@@ -36,5 +55,59 @@
         End If
 
 
+    End Sub
+
+    Private Sub frmPetOwner_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        btnPlus.PerformClick()
+    End Sub
+
+    Private Sub dgOwner_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgOwner.CellClick
+        btnPersonAdd.Text = "Update"
+        Dim i As Integer = e.RowIndex
+        With dgOwner
+            textID.Text = .Item("ownerID", i).Value
+            txtOwnerName.Text = .Item("ownerName", i).Value
+            txtAddress.Text = .Item("ownerAddress", i).Value
+            txtPhone.Text = .Item("ownerContactNumber", i).Value
+        End With
+    End Sub
+
+    Private Sub btnAC_Click(sender As Object, e As EventArgs) Handles btnAC.Click
+        Dim strQuery As String
+        Try
+            strQuery = $"UPDATE tblowner SET ownerStatus='Active'  WHERE ownerID ={textID.Text} "
+            'MsgBox(strQuery)
+            SQLManager(strQuery, "Record set to Active.")
+            btnPlus.PerformClick()
+        Catch ex As Exception
+            MessageBox.Show("Error: Save() " & ex.Message, "Pet DBMS",
+                MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+    End Sub
+
+    Private Sub btnIN_Click(sender As Object, e As EventArgs) Handles btnIN.Click
+        Dim strQuery As String
+        Try
+            strQuery = $"UPDATE tblowner SET ownerStatus='Inactive'  WHERE ownerID ={ textID.Text} "
+            'MsgBox(strQuery)
+            SQLManager(strQuery, "Record Set to Inactive.")
+            ExecuteDeleteLog("Owner Pet Form", "owner", Val(textID.Text))
+            btnPlus.PerformClick()
+        Catch ex As Exception
+            MessageBox.Show("Error: Save() " & ex.Message, "Pet DBMS",
+                MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+    End Sub
+
+    Private Sub btnPlus_Click(sender As Object, e As EventArgs) Handles btnPlus.Click
+        textID.Text = RecordCount("tblOwner", "ownerID") + 1
+        btnPersonAdd.Text = "Add"
+        txtOwnerName.Clear()
+        txtAddress.Clear()
+        txtPhone.Clear()
+        Dim strQuery As String = "SELECT * FROM tblowner"
+        DisplayRecords(strQuery, dgOwner)
     End Sub
 End Class

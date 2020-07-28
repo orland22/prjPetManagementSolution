@@ -2,37 +2,35 @@
 ' Programmer:   Orland Celestino on July 18, 2020
 
 Public Class frmMain
+    ' Public user As Login
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Me.Close()
 
     End Sub
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim form As New LoginUser
-        form.ShowDialog()
-        MsgBox(form.user.LoggIN)
+        'StatusUser.Text = user.Type.ToString & user.Username
+        ' StatusName.Text = user.FirtsName & user.LastName
+
         dbConnection()
-        'status 
         box()
         rdoAll.Checked = True
         btnNew.PerformClick()
         Status_RadioButton()
         Search_Data()
-
-
     End Sub
 
     Private Sub box()
-        txtID.Text = RecordCount() + 1
+        txtID.Text = RecordCount("tblpet", "petID") + 1
 
         Dim strQuery As String
-        strQuery = "Select * FROM tblType"
+        strQuery = "Select * FROM tblType WHERE typeStatus ='Active' "
         LoadToComboBox(strQuery, cboType, "typeID", "typeName")
 
         strQuery = "Select breedID, breedName, typeID from tblBreed " +
             "WHERE typeID = " + cboType.SelectedValue.ToString
         LoadToComboBox(strQuery, cboBreed, "breedID", "breedName")
 
-        strQuery = "SELECT * FROM tblOwner"
+        strQuery = "SELECT * FROM tblOwner WHERE ownerStatus='Active'"
         LoadToComboBox(strQuery, cboOwner, "ownerID", "ownerName")
 
 
@@ -63,7 +61,8 @@ Public Class frmMain
                 txtNotes.Text & "')"
 
             SQLManager(strQuery, "Record saved.")
-            txtID.Text = RecordCount() + 1
+            ExecuteCreateLog("Main Form", "pet", Val(txtID.Text))
+            txtID.Text = RecordCount("tblpet", "petID") + 1
             strQuery = "Select petID, petName, petBirthdate, petGender, tbltype.typeName, tblbreed.breedName, " +
                 "petNotes, tblOwner.ownerName, tblOwner.ownerAddress, " +
                 "tblOwner.ownerContactNumber, petStatus " +
@@ -84,26 +83,32 @@ Public Class frmMain
         btnPrint.Enabled = False
         Dim i As Integer = e.RowIndex
         Try
-            With dgPets
-                txtID.Text = .Item("petID", i).Value
-                txtName.Text = .Item("petName", i).Value
-                txtBirthdate.Text = CDate(.Item("petBirthdate", i).Value).ToString("MM-dd-yyyy")
-                cboGender.Text = .Item("petGender", i).Value
-                cboType.Text = .Item("typeName", i).Value
-                cboBreed.Text = .Item("breedName", i).Value
-                cboOwner.Text = .Item("ownerName", i).Value
-                txtNotes.Text = .Item("petNotes", i).Value
-                cboStatus.Text = .Item("petStatus", i).Value
-            End With
+            ' With dgPets
+            'txtID.Text = .Item("petID", i).Value
+            'txtName.Text = .Item("petName", i).Value
+            'txtBirthdate.Text = CDate(.Item("petBirthdate", i).Value).ToString("MM-dd-yyyy")
+            'cboGender.Text = .Item("petGender", i).Value
+            'cboType.Text = .Item("typeName", i).Value
+            'cboBreed.Text = .Item("breedName", i).Value
+            'cboOwner.Text = .Item("ownerName", i).Value
+            'txtNotes.Text = .Item("petNotes", i).Value
+            'cboStatus.Text = .Item("petStatus", i).Value
+            Dim intID As Integer = CType(dgPets.Item("petID", i).Value, Integer)
+            Dim pet As New petOwner(intID)
+
+            MsgBox(intID + "")
+
+
+            'End With
         Catch ex As Exception
-            MessageBox.Show("Empty Fields", "pet dbms", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            ' MessageBox.Show("Empty Fields", "pet dbms", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
     'button new
     Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
 
-        txtID.Text = RecordCount() + 1
+        txtID.Text = RecordCount("tblpet", "petID") + 1
         btnSave.Enabled = True
         btnPrint.Enabled = True
         btnUpdate.Enabled = False
@@ -125,7 +130,7 @@ Public Class frmMain
         Try
             strQuery = "UPDATE tblpet SET petName = '" & txtName.Text & "', petBirthdate = '" & CDate(txtBirthdate.Text).ToString("yyyy-MM-dd") & "', petGender = '" & cboGender.Text & "', petBreed = " & cboBreed.SelectedValue.ToString & ", ownerID = " & cboOwner.SelectedValue.ToString & ", petNotes = '" & txtNotes.Text & "', petStatus='" & cboStatus.Text & "'  WHERE petID = " & txtID.Text
             SQLManager(strQuery, "Record Updated.")
-            txtID.Text = RecordCount() + 1
+            txtID.Text = RecordCount("tblpet", "petID") + 1
             Status_RadioButton()
             Search_Data()
         Catch ex As Exception
@@ -140,6 +145,7 @@ Public Class frmMain
             strQuery = "UPDATE tblpet SET petStatus='Inactive'  WHERE petID = " & txtID.Text
             'MsgBox(strQuery)
             SQLManager(strQuery, "Pet status set to INACTIVE.")
+            ExecuteDeleteLog("Main Form", "pet", Val(txtID.Text))
             btnNew.PerformClick()
             strQuery = "SELECT petID, petName, petBirthdate, petGender, tbltype.typeName, " +
             "tblbreed.breedName, petNotes, " +
@@ -239,4 +245,19 @@ Public Class frmMain
         AbUs = New AboutUS
         AbUs.ShowDialog()
     End Sub
+
+    Private Sub QuitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QuitToolStripMenuItem.Click
+        Me.Close()
+    End Sub
+
+    Private Sub UsersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UsersToolStripMenuItem.Click
+        Dim form As New UserManagement
+        form.ShowDialog()
+    End Sub
+
+    Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        ExecuteLogout()
+    End Sub
+
+
 End Class

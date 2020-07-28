@@ -70,10 +70,14 @@ Partial Class frmMain
         Me.OwnerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.StatusUser = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.StatusName = New System.Windows.Forms.ToolStripStatusLabel()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgPets, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox2
@@ -446,13 +450,13 @@ Partial Class frmMain
         'AboutPMSToolStripMenuItem
         '
         Me.AboutPMSToolStripMenuItem.Name = "AboutPMSToolStripMenuItem"
-        Me.AboutPMSToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutPMSToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
         Me.AboutPMSToolStripMenuItem.Text = "About PMS"
         '
         'QuitToolStripMenuItem
         '
         Me.QuitToolStripMenuItem.Name = "QuitToolStripMenuItem"
-        Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
         Me.QuitToolStripMenuItem.Text = "Quit"
         '
         'MasterFileToolStripMenuItem
@@ -465,25 +469,25 @@ Partial Class frmMain
         'PetsToolStripMenuItem
         '
         Me.PetsToolStripMenuItem.Name = "PetsToolStripMenuItem"
-        Me.PetsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PetsToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
         Me.PetsToolStripMenuItem.Text = "Pets"
         '
         'TypeToolStripMenuItem
         '
         Me.TypeToolStripMenuItem.Name = "TypeToolStripMenuItem"
-        Me.TypeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.TypeToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
         Me.TypeToolStripMenuItem.Text = "Type"
         '
         'BreedToolStripMenuItem
         '
         Me.BreedToolStripMenuItem.Name = "BreedToolStripMenuItem"
-        Me.BreedToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BreedToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
         Me.BreedToolStripMenuItem.Text = "Breed"
         '
         'OwnerToolStripMenuItem
         '
         Me.OwnerToolStripMenuItem.Name = "OwnerToolStripMenuItem"
-        Me.OwnerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OwnerToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
         Me.OwnerToolStripMenuItem.Text = "Owner"
         '
         'SettingToolStripMenuItem
@@ -496,14 +500,38 @@ Partial Class frmMain
         'UsersToolStripMenuItem
         '
         Me.UsersToolStripMenuItem.Name = "UsersToolStripMenuItem"
-        Me.UsersToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.UsersToolStripMenuItem.Size = New System.Drawing.Size(102, 22)
         Me.UsersToolStripMenuItem.Text = "Users"
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StatusUser, Me.StatusName})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 449)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(655, 22)
+        Me.StatusStrip1.TabIndex = 13
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'StatusUser
+        '
+        Me.StatusUser.Name = "StatusUser"
+        Me.StatusUser.Size = New System.Drawing.Size(320, 17)
+        Me.StatusUser.Spring = True
+        Me.StatusUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'StatusName
+        '
+        Me.StatusName.Name = "StatusName"
+        Me.StatusName.Size = New System.Drawing.Size(320, 17)
+        Me.StatusName.Spring = True
+        Me.StatusName.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(655, 471)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.lblNump)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.GroupBox2)
@@ -529,6 +557,8 @@ Partial Class frmMain
         Me.GroupBox1.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -582,4 +612,7 @@ Partial Class frmMain
     Friend WithEvents OwnerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SettingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UsersToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents StatusStrip1 As StatusStrip
+    Friend WithEvents StatusUser As ToolStripStatusLabel
+    Friend WithEvents StatusName As ToolStripStatusLabel
 End Class

@@ -16,7 +16,7 @@ C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet 
 C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\bin\Debug\MySql.Data.xml
-C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution_Celestino.vbprojAssemblyReference.cache
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution_Celestino_CelestinoFINAL.vbprojAssemblyReference.cache
 C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.exe.config
 C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet_Management_Solution.AboutUS.resources
 C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet_Management_Solution.frmBreed.resources
@@ -25,9 +25,10 @@ C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet 
 C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet_Management_Solution.frmPetType.resources
 C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet_Management_Solution.LoginUser.resources
 C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet_Management_Solution.Resources.resources
-C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution_Celestino.vbproj.GenerateResource.cache
-C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution_Celestino.vbproj.CoreCompileInputs.cache
-C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution_Celestino.vbproj.CopyComplete
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution_Celestino_CelestinoFINAL.vbproj.GenerateResource.cache
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution_Celestino_CelestinoFINAL.vbproj.CoreCompileInputs.cache
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution_Celestino_CelestinoFINAL.vbproj.CopyComplete
 C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.exe
 C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.xml
 C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet Management Solution.pdb
+C:\Users\Jessa Celestino\Desktop\SUMMER CLASS 2020\Visual Basic\SeventhWeek\Pet Management Solution\Pet Management Solution\obj\Debug\Pet_Management_Solution.UserManagement.resources

@@ -1,9 +1,11 @@
 ﻿Imports MySql.Data.MySqlClient
+
 Module modPet
     Private dbconn As MySqlConnection
     Private sqlcommand As MySqlCommand
     Private da As MySqlDataAdapter
     Private dt As DataTable
+    Public user As Login
 
     Dim strConn As String = "Server=localhost; User ID=root; Database=dbPets_Celestino; " + "Convert Zero Datetime=True;"
 
@@ -11,46 +13,23 @@ Module modPet
         Try
             dbconn = New MySqlConnection(strConn)
             dbconn.Open()
-            MessageBox.Show("DB test connection is succesfull", "Pet DDMS")
+            MsgBox("ACCESS GUARANTEED", MsgBoxStyle.Information)
             dbconn.Close()
 
         Catch ex As Exception
             MessageBox.Show("Error: db Connection()" & ex.Message, "pet dbms", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Public Function isFound(ByVal SQL As String, ByVal name As String, ByVal address As String, ByVal valueItem As String, ByVal addItem As String) As Boolean
-        Dim value = "", add = ""
-        Dim found = False
-        Try
-            dbconn.Open()
-            da = New MySqlDataAdapter(SQL, dbconn)
-            dt = New DataTable
-            da.Fill(dt)
 
-            For Each row As DataRow In dt.Rows
-                value = row.Item(valueItem) ' you can use this index specific instead value = row.Item(1)
-                add = row.Item(addItem) ' you can use this index specific instead value = row.Item(1)
-
-                If value = name And add = address Then
-                    found = True
-                    Exit For
-                End If
-            Next
-        Catch ex As Exception
-            MessageBox.Show("Error 106: isFound" & ex.Message)
-        Finally
-            dbconn.Close()
-        End Try
-        Return found
-    End Function
     Public Sub DisplayRecords(ByVal strSql As String, ByVal dg As DataGridView)
         dg.DataSource = GetDataTable(strSql)
     End Sub
 
-    Public Function GetDataTable(ByVal strSql As String) As DataTable
+    Public Function GetDataTable(ByVal strSQL As String) As DataTable
         Try
+            dbconn = New MySqlConnection(strConn)
             dbconn.Open()
-            da = New MySqlDataAdapter(strSql, dbconn)
+            da = New MySqlDataAdapter(strSQL, dbconn)
             dt = New DataTable
             da.Fill(dt)
             GetDataTable = dt
@@ -65,13 +44,13 @@ Module modPet
 
     End Function
 
-    Public Function RecordCount() As Integer
+    Public Function RecordCount(strTable As String, strColumn As String) As Integer
         Dim count As Integer = 0
-        Dim strSQL As String = "Select * FROM tblPet ORDER By petID DESC LIMIT 1"
+        Dim strSQL As String = $"SELECT * FROM {strTable} ORDER BY {strColumn} DESC LIMIT 1"
         Dim dt = GetDataTable(strSQL)
 
         If dt.Rows.Count() > 0 Then
-            count = dt.Rows(0).Item("petID")
+            count = dt.Rows(0).Item(strColumn)
         Else
             count = 0
         End If
@@ -161,6 +140,68 @@ Module modPet
         Finally
             dbconn.Close()
         End Try
+    End Sub
+    Public Sub SQLManager(ByVal strSQL As String)
+        Try
+            dbconn.Open()
+            sqlcommand = New MySqlCommand(strSQL, dbconn)
+            With sqlcommand
+                .CommandType = CommandType.Text
+                .ExecuteNonQuery()
+
+            End With
+            dbconn.Close()
+        Catch ex As Exception
+            MessageBox.Show("Error: SQLManager()" & ex.Message, "pet dbms", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            dbconn.Close()
+        End Try
+    End Sub
+    Public Sub ExecuteUnsuccessLog(intID As Integer)
+        Dim strQuery As String = $"INSERT INTO tblauditlog (logDateTime, logType, userID, logModule, logComment ) VALUES
+     (now(), 0, {intID}, 'Login ', 'INVALID username/password')"
+
+        SQLManager(strQuery)
+
+
+    End Sub
+
+    Public Sub ExecuteSucessLog(intID As Integer)
+        Dim strQuery As String = $"INSERT INTO tblauditlog (logDateTime, logType, userID, logModule, logComment ) VALUES
+     (now(), 1, {intID}, 'Login FORM ', 'SuccessFul Login')"
+
+        SQLManager(strQuery)
+    End Sub
+
+    Public Sub ExecuteCreateLog(strForm As String, strObject As String, intID As Integer)
+        Dim strQuery As String = $"INSERT INTO tblauditlog (logDateTime, logType, userID, logModule, logComment) VALUES
+     (now(), 2, {user.ID}, '{strForm} ', 'Create new {strObject} -# {intID}') "
+
+        SQLManager(strQuery)
+    End Sub
+
+    Public Sub ExecuteUpdateLog()
+
+    End Sub
+
+    Public Sub ExecuteDeleteLog(strForm As String, strObject As String, intID As Integer)
+        Dim strQuery As String = $"INSERT INTO tblauditlog (logDateTime, logType, userID, logModule, logComment) VALUES
+     (now(), 4, {user.ID}, '{strForm} ', 'Deactivated {strObject} -# {intID}') "
+
+        SQLManager(strQuery)
+
+    End Sub
+
+    Public Sub ExecutePrint()
+
+    End Sub
+
+    Public Sub ExecuteLogout()
+        Dim strQuery As String = $"INSERT INTO tblauditlog (logDateTime, logType, userID, logModule, logComment ) VALUES
+     (now(), 6, {user.ID}, 'Main Form', 'Logout successfully')"
+
+        SQLManager(strQuery)
+
     End Sub
 End Module
 
