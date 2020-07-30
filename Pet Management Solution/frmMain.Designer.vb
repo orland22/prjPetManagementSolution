@@ -64,12 +64,12 @@ Partial Class frmMain
         Me.AboutPMSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.QuitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MasterFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PetsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TypeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BreedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OwnerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SettingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MStype = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MSbreed = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MSowner = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AdminSet = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LogsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.StatusUser = New System.Windows.Forms.ToolStripStatusLabel()
         Me.StatusName = New System.Windows.Forms.ToolStripStatusLabel()
@@ -433,7 +433,7 @@ Partial Class frmMain
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PMSToolStripMenuItem, Me.MasterFileToolStripMenuItem, Me.SettingToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PMSToolStripMenuItem, Me.MasterFileToolStripMenuItem, Me.AdminSet})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(655, 24)
@@ -461,47 +461,47 @@ Partial Class frmMain
         '
         'MasterFileToolStripMenuItem
         '
-        Me.MasterFileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PetsToolStripMenuItem, Me.TypeToolStripMenuItem, Me.BreedToolStripMenuItem, Me.OwnerToolStripMenuItem})
+        Me.MasterFileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MStype, Me.MSbreed, Me.MSowner})
         Me.MasterFileToolStripMenuItem.Name = "MasterFileToolStripMenuItem"
         Me.MasterFileToolStripMenuItem.Size = New System.Drawing.Size(76, 20)
         Me.MasterFileToolStripMenuItem.Text = "Master File"
         '
-        'PetsToolStripMenuItem
+        'MStype
         '
-        Me.PetsToolStripMenuItem.Name = "PetsToolStripMenuItem"
-        Me.PetsToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
-        Me.PetsToolStripMenuItem.Text = "Pets"
+        Me.MStype.Name = "MStype"
+        Me.MStype.Size = New System.Drawing.Size(109, 22)
+        Me.MStype.Text = "Type"
         '
-        'TypeToolStripMenuItem
+        'MSbreed
         '
-        Me.TypeToolStripMenuItem.Name = "TypeToolStripMenuItem"
-        Me.TypeToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
-        Me.TypeToolStripMenuItem.Text = "Type"
+        Me.MSbreed.Name = "MSbreed"
+        Me.MSbreed.Size = New System.Drawing.Size(109, 22)
+        Me.MSbreed.Text = "Breed"
         '
-        'BreedToolStripMenuItem
+        'MSowner
         '
-        Me.BreedToolStripMenuItem.Name = "BreedToolStripMenuItem"
-        Me.BreedToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
-        Me.BreedToolStripMenuItem.Text = "Breed"
+        Me.MSowner.Name = "MSowner"
+        Me.MSowner.Size = New System.Drawing.Size(109, 22)
+        Me.MSowner.Text = "Owner"
         '
-        'OwnerToolStripMenuItem
+        'AdminSet
         '
-        Me.OwnerToolStripMenuItem.Name = "OwnerToolStripMenuItem"
-        Me.OwnerToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
-        Me.OwnerToolStripMenuItem.Text = "Owner"
-        '
-        'SettingToolStripMenuItem
-        '
-        Me.SettingToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UsersToolStripMenuItem})
-        Me.SettingToolStripMenuItem.Name = "SettingToolStripMenuItem"
-        Me.SettingToolStripMenuItem.Size = New System.Drawing.Size(56, 20)
-        Me.SettingToolStripMenuItem.Text = "Setting"
+        Me.AdminSet.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UsersToolStripMenuItem, Me.LogsToolStripMenuItem})
+        Me.AdminSet.Name = "AdminSet"
+        Me.AdminSet.Size = New System.Drawing.Size(56, 20)
+        Me.AdminSet.Text = "Setting"
         '
         'UsersToolStripMenuItem
         '
         Me.UsersToolStripMenuItem.Name = "UsersToolStripMenuItem"
         Me.UsersToolStripMenuItem.Size = New System.Drawing.Size(102, 22)
         Me.UsersToolStripMenuItem.Text = "Users"
+        '
+        'LogsToolStripMenuItem
+        '
+        Me.LogsToolStripMenuItem.Name = "LogsToolStripMenuItem"
+        Me.LogsToolStripMenuItem.Size = New System.Drawing.Size(102, 22)
+        Me.LogsToolStripMenuItem.Text = "Logs"
         '
         'StatusStrip1
         '
@@ -515,14 +515,14 @@ Partial Class frmMain
         'StatusUser
         '
         Me.StatusUser.Name = "StatusUser"
-        Me.StatusUser.Size = New System.Drawing.Size(320, 17)
+        Me.StatusUser.Size = New System.Drawing.Size(304, 17)
         Me.StatusUser.Spring = True
         Me.StatusUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'StatusName
         '
         Me.StatusName.Name = "StatusName"
-        Me.StatusName.Size = New System.Drawing.Size(320, 17)
+        Me.StatusName.Size = New System.Drawing.Size(304, 17)
         Me.StatusName.Spring = True
         Me.StatusName.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -606,13 +606,13 @@ Partial Class frmMain
     Friend WithEvents AboutPMSToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents QuitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MasterFileToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents PetsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents TypeToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents BreedToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents OwnerToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SettingToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MStype As ToolStripMenuItem
+    Friend WithEvents MSbreed As ToolStripMenuItem
+    Friend WithEvents MSowner As ToolStripMenuItem
+    Friend WithEvents AdminSet As ToolStripMenuItem
     Friend WithEvents UsersToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents StatusUser As ToolStripStatusLabel
     Friend WithEvents StatusName As ToolStripStatusLabel
+    Friend WithEvents LogsToolStripMenuItem As ToolStripMenuItem
 End Class

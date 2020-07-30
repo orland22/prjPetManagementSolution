@@ -107,7 +107,7 @@ Partial Class frmPetOwner
         '
         'btnPersonAdd
         '
-        Me.btnPersonAdd.Location = New System.Drawing.Point(82, 239)
+        Me.btnPersonAdd.Location = New System.Drawing.Point(82, 234)
         Me.btnPersonAdd.Name = "btnPersonAdd"
         Me.btnPersonAdd.Size = New System.Drawing.Size(86, 29)
         Me.btnPersonAdd.TabIndex = 7
@@ -116,16 +116,16 @@ Partial Class frmPetOwner
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(177, 239)
+        Me.btnCancel.Location = New System.Drawing.Point(174, 234)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(86, 29)
         Me.btnCancel.TabIndex = 8
-        Me.btnCancel.Text = "Cancel"
+        Me.btnCancel.Text = "Exit"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'btnIN
         '
-        Me.btnIN.Location = New System.Drawing.Point(483, 280)
+        Me.btnIN.Location = New System.Drawing.Point(493, 277)
         Me.btnIN.Name = "btnIN"
         Me.btnIN.Size = New System.Drawing.Size(86, 29)
         Me.btnIN.TabIndex = 9
@@ -151,6 +151,7 @@ Partial Class frmPetOwner
         '
         'textID
         '
+        Me.textID.Enabled = False
         Me.textID.Location = New System.Drawing.Point(82, 66)
         Me.textID.Name = "textID"
         Me.textID.Size = New System.Drawing.Size(100, 20)
@@ -158,7 +159,7 @@ Partial Class frmPetOwner
         '
         'btnAC
         '
-        Me.btnAC.Location = New System.Drawing.Point(391, 280)
+        Me.btnAC.Location = New System.Drawing.Point(401, 277)
         Me.btnAC.Name = "btnAC"
         Me.btnAC.Size = New System.Drawing.Size(86, 29)
         Me.btnAC.TabIndex = 13
@@ -167,9 +168,9 @@ Partial Class frmPetOwner
         '
         'btnPlus
         '
-        Me.btnPlus.Location = New System.Drawing.Point(188, 67)
+        Me.btnPlus.Location = New System.Drawing.Point(188, 61)
         Me.btnPlus.Name = "btnPlus"
-        Me.btnPlus.Size = New System.Drawing.Size(75, 23)
+        Me.btnPlus.Size = New System.Drawing.Size(75, 29)
         Me.btnPlus.TabIndex = 14
         Me.btnPlus.Text = "+"
         Me.btnPlus.UseVisualStyleBackColor = True

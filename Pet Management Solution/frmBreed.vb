@@ -1,5 +1,6 @@
 ﻿Public Class frmBreed
     Private _intPetTypeID As String
+    Private breed As petBreed
     Public WriteOnly Property PetTypeID As Integer
         Set(value As Integer)
             _intPetTypeID = value
@@ -32,11 +33,14 @@
                 MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         Else
+            breed.Name = strBreed
+            breed.Type = New petType(cdoType.SelectedValue)
             Try
-                strQuery = $"UPDATE tblbreed SET breedname='{txtBreed.Text}', typeID={cdoType.SelectedValue} WHERE breedID ={txtID.Text}"
+                strQuery = $"UPDATE tblbreed SET breedname='{breed.Name}', typeID={breed.Type.ID} WHERE breedID ={txtID.Text}"
                 'MsgBox(strQuery)
-                SQLManager(strQuery, "Record updated.")
-                Me.Close()
+                If SQLManager(strQuery) Then
+                    SQLManager(breed.Auditlog)
+                End If
             Catch ex As Exception
                 MessageBox.Show("Error: Save() " & ex.Message, "Pet DBMS",
                 MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -58,9 +62,13 @@
         btnBreed.Text = "Update"
         Dim i As Integer = e.RowIndex
         With dgBreed
-            txtID.Text = .Item("breedID", i).Value
-            cdoType.SelectedValue = .Item("typeID", i).Value
-            txtBreed.Text = .Item("breedname", i).Value
+            breed = New petBreed(CType(.Item("breedID", i).Value, Integer))
+            txtID.Text = breed.ID
+            cdoType.SelectedValue = breed.Type.ID
+            txtBreed.Text = breed.Name
+            ' txtID.Text = .Item("breedID", i).Value
+            ' cdoType.SelectedValue = .Item("typeID", i).Value
+            'txtBreed.Text = .Item("breedname", i).Value
         End With
     End Sub
 
@@ -93,7 +101,7 @@
 
     Private Sub btnPlus_Click(sender As Object, e As EventArgs) Handles btnPlus.Click
         Dim strQuery As String = "SELECT * FROM tblType"
-        LoadToComboBox(strQuery, cdoType, "typeID", "typeName")
+        LoadToComboBox(strQuery, cdoType, "typeID", "typeName", "typeStatus")
         txtID.Text = RecordCount("tblbreed", "breedID") + 1
         cdoType.SelectedIndex = 0
         btnBreed.Text = "Add"

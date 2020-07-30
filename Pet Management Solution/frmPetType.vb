@@ -1,4 +1,5 @@
 ﻿Public Class frmPetType
+    Private type As petType
     Private Sub btnType_Click(sender As Object, e As EventArgs) Handles btnType.Click
         Dim strQuery As String
         Dim strType As String = txtType.Text
@@ -19,11 +20,16 @@
                 MessageBox.Show("Error: Save() " & ex.Message, "Pet DBMS", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         Else
+            ' Owner.Name = strName
+            ' Owner.Address = strAddress
+            ' Owner.Phone = strPhone
+            type.Name = strType
             Try
                 strQuery = $"UPDATE tbltype SET typeName='{strType}' WHERE typeID ={txtID.Text} "
-                'MsgBox(strQuery)
-                SQLManager(strQuery, "Record updated.")
 
+                If SQLManager(strQuery) Then
+                    SQLManager(type.Auditlog)
+                End If
             Catch ex As Exception
                 MessageBox.Show("Error: Save() " & ex.Message, "Pet DBMS",
                 MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -44,8 +50,11 @@
         btnType.Text = "Update"
         Dim i As Integer = e.RowIndex
         With dgType
-            txtID.Text = .Item("typeID", i).Value
-            txtType.Text = .Item("typeName", i).Value
+            type = New petType(CType(.Item("typeID", i).Value, Integer))
+            txtID.Text = type.ID
+            txtType.Text = type.Name
+            ' txtID.Text = .Item("typeID", i).Value
+            ' txtType.Text = .Item("typeName", i).Value
         End With
     End Sub
 

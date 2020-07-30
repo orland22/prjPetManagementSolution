@@ -9,6 +9,7 @@
     Private strType As String
     Private boLog As Boolean
     Private strStatus As String
+    Private strAuditlog As String
     Public Sub New(strUser As String, strPass As String)
 
         Dim strSQL As String = $"Select * FROM tblUser WHERE userName ='{strUser}' LIMIT 1"
@@ -40,6 +41,25 @@
         End If
 
     End Sub
+    Public Sub New(userID As Integer)
+        Dim strSQL As String = $"Select * FROM tbluser WHERE userID ={userID}"
+        Dim dt = GetDataTable(strSQL)
+        If dt.Rows.Count > 0 Then
+            With dt.Rows(0)
+                Me.intID = .Item("userID")
+                strFirstName = .Item("userFirstname")
+                strLastName = .Item("userLastname")
+                strContactNum = .Item("userContactNum")
+                strUserName = .Item("userName")
+                strPassWord = String.Empty
+                strType = CType(.Item("userType"), Integer)
+                strStatus = .Item("userStatus")
+            End With
+        End If
+
+
+    End Sub
+
 
     Public ReadOnly Property LoggIN As Boolean
         Get
@@ -47,22 +67,72 @@
         End Get
     End Property
 
-    Public ReadOnly Property Username As String
+    Public Property Username As String
         Get
             Return strUserName
         End Get
+        Set(value As String)
+            If ExecuteUpdateLog(strAuditlog, "User Form", "user name", "user", intID, strUserName, value) Then
+                strUserName = value
+            End If
+        End Set
     End Property
 
-    Public ReadOnly Property FirtsName As String
+    Public Property FirtsName As String
         Get
             Return strFirstName
         End Get
+        Set(value As String)
+            If ExecuteUpdateLog(strAuditlog, "User Form", "user", "FirstName", intID, strFirstName, value) Then
+                strFirstName = value
+
+            End If
+        End Set
     End Property
 
-    Public ReadOnly Property LastName As String
+    Public Property LastName As String
         Get
             Return strLastName
         End Get
+        Set(value As String)
+            If ExecuteUpdateLog(strAuditlog, "User Form", "user", "LastName", intID, strLastName, value) Then
+                strLastName = value
+
+            End If
+        End Set
+    End Property
+    Public Property Contact As String
+        Get
+            Return strContactNum
+        End Get
+        Set(value As String)
+            If ExecuteUpdateLog(strAuditlog, "User form", "user contact", "Contact", intID, strContactNum, value) Then
+                strContactNum = value
+
+            End If
+        End Set
+    End Property
+    Public Property Password As String
+        Get
+            Return strPassWord
+        End Get
+        Set(value As String)
+            If ExecuteUpdateLog(strAuditlog, "User form", "user pass", "user", intID, strPassWord, value) Then
+                strPassWord = value
+
+            End If
+        End Set
+    End Property
+    Public Property Type As String
+        Get
+            Return strType
+        End Get
+        Set(value As String)
+            If ExecuteUpdateLog(strAuditlog, "User form", "user type", "usert", intID, strType, value) Then
+                strType = value
+
+            End If
+        End Set
     End Property
 
     Public ReadOnly Property IsActive As Boolean
@@ -70,17 +140,16 @@
             Return strStatus = "Active"
         End Get
     End Property
-
     Public ReadOnly Property ID As Integer
         Get
             Return intID
         End Get
     End Property
 
-    'new 
-    ' Public ReadOnly Property Type As String
-    ' Get
-    '   Return strType
-    ' End Get
-    'End Property
+    Public ReadOnly Property Auditlog As String
+        Get
+            Return strAuditlog
+        End Get
+    End Property
+
 End Class

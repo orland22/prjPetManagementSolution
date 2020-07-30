@@ -22,5 +22,25 @@ Pet Management Solution
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="T:Pet_Management_Solution.dsPets">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Pet_Management_Solution.dsPets.dtPetDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Pet_Management_Solution.dsPets.dtPetRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Pet_Management_Solution.dsPets.dtPetRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
 </members>
 </doc>

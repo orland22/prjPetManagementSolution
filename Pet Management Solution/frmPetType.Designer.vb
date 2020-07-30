@@ -32,6 +32,7 @@ Partial Class frmPetType
         Me.btnIN = New System.Windows.Forms.Button()
         Me.btnAC = New System.Windows.Forms.Button()
         Me.btnPlus = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.dgType, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -39,7 +40,7 @@ Partial Class frmPetType
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(124, 77)
+        Me.Label1.Location = New System.Drawing.Point(12, 140)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(89, 20)
         Me.Label1.TabIndex = 0
@@ -48,7 +49,7 @@ Partial Class frmPetType
         'txtType
         '
         Me.txtType.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtType.Location = New System.Drawing.Point(47, 100)
+        Me.txtType.Location = New System.Drawing.Point(107, 138)
         Me.txtType.Name = "txtType"
         Me.txtType.Size = New System.Drawing.Size(181, 24)
         Me.txtType.TabIndex = 1
@@ -56,7 +57,7 @@ Partial Class frmPetType
         '
         'btnType
         '
-        Me.btnType.Location = New System.Drawing.Point(84, 154)
+        Me.btnType.Location = New System.Drawing.Point(107, 189)
         Me.btnType.Name = "btnType"
         Me.btnType.Size = New System.Drawing.Size(86, 29)
         Me.btnType.TabIndex = 2
@@ -65,25 +66,27 @@ Partial Class frmPetType
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(179, 154)
+        Me.btnCancel.Location = New System.Drawing.Point(199, 189)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(86, 29)
         Me.btnCancel.TabIndex = 3
-        Me.btnCancel.Text = "Cancel"
+        Me.btnCancel.Text = "Exit"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(81, 44)
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label2.Location = New System.Drawing.Point(62, 91)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(18, 13)
+        Me.Label2.Size = New System.Drawing.Size(28, 20)
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "ID"
         '
         'txtID
         '
-        Me.txtID.Location = New System.Drawing.Point(128, 44)
+        Me.txtID.Enabled = False
+        Me.txtID.Location = New System.Drawing.Point(107, 91)
         Me.txtID.Name = "txtID"
         Me.txtID.Size = New System.Drawing.Size(100, 20)
         Me.txtID.TabIndex = 5
@@ -93,12 +96,12 @@ Partial Class frmPetType
         Me.dgType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgType.Location = New System.Drawing.Point(315, 28)
         Me.dgType.Name = "dgType"
-        Me.dgType.Size = New System.Drawing.Size(269, 138)
+        Me.dgType.Size = New System.Drawing.Size(269, 236)
         Me.dgType.TabIndex = 6
         '
         'btnIN
         '
-        Me.btnIN.Location = New System.Drawing.Point(513, 176)
+        Me.btnIN.Location = New System.Drawing.Point(499, 270)
         Me.btnIN.Name = "btnIN"
         Me.btnIN.Size = New System.Drawing.Size(86, 29)
         Me.btnIN.TabIndex = 7
@@ -107,7 +110,7 @@ Partial Class frmPetType
         '
         'btnAC
         '
-        Me.btnAC.Location = New System.Drawing.Point(421, 176)
+        Me.btnAC.Location = New System.Drawing.Point(407, 270)
         Me.btnAC.Name = "btnAC"
         Me.btnAC.Size = New System.Drawing.Size(86, 29)
         Me.btnAC.TabIndex = 8
@@ -116,19 +119,30 @@ Partial Class frmPetType
         '
         'btnPlus
         '
-        Me.btnPlus.Location = New System.Drawing.Point(234, 101)
+        Me.btnPlus.Location = New System.Drawing.Point(213, 88)
         Me.btnPlus.Name = "btnPlus"
         Me.btnPlus.Size = New System.Drawing.Size(75, 23)
         Me.btnPlus.TabIndex = 9
         Me.btnPlus.Text = "+"
         Me.btnPlus.UseVisualStyleBackColor = True
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label3.Location = New System.Drawing.Point(80, 21)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(176, 20)
+        Me.Label3.TabIndex = 10
+        Me.Label3.Text = "Pet Type Information"
+        '
         'frmPetType
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(611, 217)
+        Me.ClientSize = New System.Drawing.Size(597, 311)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.btnPlus)
         Me.Controls.Add(Me.btnAC)
         Me.Controls.Add(Me.btnIN)
@@ -157,4 +171,5 @@ Partial Class frmPetType
     Friend WithEvents btnIN As Button
     Friend WithEvents btnAC As Button
     Friend WithEvents btnPlus As Button
+    Friend WithEvents Label3 As Label
 End Class

@@ -1,4 +1,5 @@
 ﻿Public Class frmPetOwner
+    Private owner As petOwner
     Private Sub btnPersonAdd_Click(sender As Object, e As EventArgs) Handles btnPersonAdd.Click
         Dim strQuery As String
         Dim strName As String = txtOwnerName.Text
@@ -25,6 +26,9 @@
 
             End Try
         Else
+            owner.Name = strName
+            owner.Address = strAddress
+            owner.Phone = strPhone
             Try
                 If String.IsNullOrEmpty(strName.ToString()) Then
                     MessageBox.Show("Please Fill All", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -33,9 +37,11 @@
                 ElseIf String.IsNullOrEmpty(strPhone.ToString()) Then
                     MessageBox.Show("Please Fill All", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Else
-                    strQuery = $"UPDATE tblowner SET ownerName='{strName}', ownerAddress='{strAddress}', ownerContactNumber='{strPhone}' WHERE ownerID ={textID.Text} "
+                    strQuery = $"UPDATE tblowner SET ownerName='{owner.Name}', ownerAddress='{owner.Address}', ownerContactNumber='{owner.Phone}' WHERE ownerID ={textID.Text} "
                     'MsgBox(strQuery)
-                    SQLManager(strQuery, "Record updated.")
+                    If SQLManager(strQuery) Then
+                        SQLManager(owner.Auditlog)
+                    End If
                     btnPlus.PerformClick()
                 End If
             Catch ex As Exception
@@ -64,12 +70,22 @@
     Private Sub dgOwner_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgOwner.CellClick
         btnPersonAdd.Text = "Update"
         Dim i As Integer = e.RowIndex
-        With dgOwner
-            textID.Text = .Item("ownerID", i).Value
-            txtOwnerName.Text = .Item("ownerName", i).Value
-            txtAddress.Text = .Item("ownerAddress", i).Value
-            txtPhone.Text = .Item("ownerContactNumber", i).Value
-        End With
+        Try
+            With dgOwner
+                owner = New petOwner(CType(.Item("ownerID", i).Value, Integer))
+                textID.Text = owner.ID
+                txtOwnerName.Text = owner.Name
+                txtAddress.Text = owner.Address
+                txtPhone.Text = owner.Phone
+
+
+                'txtOwnerName.Text = .Item("ownerName", i).Value
+                'txtAddress.Text = .Item("ownerAddress", i).Value
+                'txtPhone.Text = .Item("ownerContactNumber", i).Value
+            End With
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub btnAC_Click(sender As Object, e As EventArgs) Handles btnAC.Click

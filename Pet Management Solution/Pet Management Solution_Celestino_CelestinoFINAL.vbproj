@@ -48,11 +48,18 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data, Version=8.0.20.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -80,6 +87,22 @@
     <Compile Include="AboutUS.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="crPets.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crPets.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="dsPets.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPets.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frmAudit.Designer.vb">
+      <DependentUpon>frmAudit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAudit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmBreed.Designer.vb">
       <DependentUpon>frmBreed.vb</DependentUpon>
     </Compile>
@@ -103,6 +126,12 @@
       <DependentUpon>frmPetType.vb</DependentUpon>
     </Compile>
     <Compile Include="frmPetType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrintPet.Designer.vb">
+      <DependentUpon>frmPrintPet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrintPet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.vb" />
@@ -130,7 +159,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Pet.vb" />
+    <Compile Include="petBreed.vb" />
     <Compile Include="petOwner.vb" />
+    <Compile Include="petType.vb" />
     <Compile Include="UserManagement.Designer.vb">
       <DependentUpon>UserManagement.vb</DependentUpon>
     </Compile>
@@ -141,6 +172,13 @@
   <ItemGroup>
     <EmbeddedResource Include="AboutUS.resx">
       <DependentUpon>AboutUS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="crPets.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crPets.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAudit.resx">
+      <DependentUpon>frmAudit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBreed.resx">
       <DependentUpon>frmBreed.vb</DependentUpon>
@@ -153,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPetType.resx">
       <DependentUpon>frmPetType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrintPet.resx">
+      <DependentUpon>frmPrintPet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginUser.resx">
       <DependentUpon>LoginUser.vb</DependentUpon>
@@ -171,6 +212,17 @@
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
+    <None Include="dsPets.xsc">
+      <DependentUpon>dsPets.xsd</DependentUpon>
+    </None>
+    <None Include="dsPets.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPets.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="dsPets.xss">
+      <DependentUpon>dsPets.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -181,6 +233,9 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

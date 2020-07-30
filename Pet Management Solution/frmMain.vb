@@ -2,14 +2,21 @@
 ' Programmer:   Orland Celestino on July 18, 2020
 
 Public Class frmMain
-    ' Public user As Login
+   ' Public user As Login
+    Private pet As Pet
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Me.Close()
 
     End Sub
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'StatusUser.Text = user.Type.ToString & user.Username
-        ' StatusName.Text = user.FirtsName & user.LastName
+        If user.Type = "Admin" Then
+            AdminSet.Visible = True
+        ElseIf user.Type = "Encoder" Then
+            AdminSet.Visible = False
+        End If
+
+        StatusUser.Text = "User: " & user.Type.ToString & "[ " & user.Username & " ]"
+        StatusName.Text = "Developed by :" & user.FirtsName & user.LastName & " Copyright ©  2020"
 
         dbConnection()
         box()
@@ -23,15 +30,15 @@ Public Class frmMain
         txtID.Text = RecordCount("tblpet", "petID") + 1
 
         Dim strQuery As String
-        strQuery = "Select * FROM tblType WHERE typeStatus ='Active' "
-        LoadToComboBox(strQuery, cboType, "typeID", "typeName")
+        strQuery = "Select * FROM tblType"
+        LoadToComboBox(strQuery, cboType, "typeID", "typeName", "typeStatus")
 
         strQuery = "Select breedID, breedName, typeID from tblBreed " +
             "WHERE typeID = " + cboType.SelectedValue.ToString
-        LoadToComboBox(strQuery, cboBreed, "breedID", "breedName")
+        LoadToComboBox(strQuery, cboBreed, "breedID", "breedName", "breedStatus")
 
         strQuery = "SELECT * FROM tblOwner WHERE ownerStatus='Active'"
-        LoadToComboBox(strQuery, cboOwner, "ownerID", "ownerName")
+        LoadToComboBox(strQuery, cboOwner, "ownerID", "ownerName", "ownerStatus")
 
 
     End Sub
@@ -40,7 +47,7 @@ Public Class frmMain
         Try
             strQuery = "Select breedID, breedName, typeID FROM tblbreed " +
                 "WHERE typeID = " + cboType.SelectedValue.ToString
-            LoadToComboBox(strQuery, cboBreed, "breedID", "breedName")
+            LoadToComboBox(strQuery, cboBreed, "breedID", "breedName", "breedStatus")
         Catch ex As Exception
             MessageBox.Show("Error:cboType SelectionChangeCommitted()" & ex.Message, "pet dbms", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -79,29 +86,33 @@ Public Class frmMain
     Private Sub dgPets_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgPets.CellClick
         btnUpdate.Enabled = True
         btnDelete.Enabled = True
-        btnSave.Enabled = False
         btnPrint.Enabled = False
+        btnSave.Enabled = False
         Dim i As Integer = e.RowIndex
         Try
-            ' With dgPets
-            'txtID.Text = .Item("petID", i).Value
-            'txtName.Text = .Item("petName", i).Value
-            'txtBirthdate.Text = CDate(.Item("petBirthdate", i).Value).ToString("MM-dd-yyyy")
-            'cboGender.Text = .Item("petGender", i).Value
-            'cboType.Text = .Item("typeName", i).Value
-            'cboBreed.Text = .Item("breedName", i).Value
-            'cboOwner.Text = .Item("ownerName", i).Value
-            'txtNotes.Text = .Item("petNotes", i).Value
-            'cboStatus.Text = .Item("petStatus", i).Value
-            Dim intID As Integer = CType(dgPets.Item("petID", i).Value, Integer)
-            Dim pet As New petOwner(intID)
+            pet = New Pet(CType(dgPets.Item("petID", i).Value, Integer))
+            txtID.Text = pet.ID
+            txtName.Text = pet.Name
+            txtBirthdate.Text = pet.Birthdate
+            cboGender.Text = pet.Gender
+            cboType.SelectedValue = pet.Type.ID
+            'Update cboBreed First before anything
+            Dim strQuery As String
+            Try
+                strQuery = "Select breedID, breedName, typeID FROM tblbreed " +
+                "WHERE typeID = " + cboType.SelectedValue.ToString
+                LoadToComboBox(strQuery, cboBreed, "breedID", "breedName", "breedStatus")
+            Catch ex As Exception
+                MessageBox.Show("Error:cboType SelectionChangeCommitted()" & ex.Message, "pet dbms", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+            'resume Display of Click
 
-            MsgBox(intID + "")
-
-
-            'End With
+            cboBreed.SelectedValue = pet.Breed.ID
+            cboOwner.SelectedValue = pet.Owner.ID
+            txtNotes.Text = pet.Notes
+            cboStatus.Text = pet.Status
         Catch ex As Exception
-            ' MessageBox.Show("Empty Fields", "pet dbms", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Empty Fields", "pet dbms", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -116,9 +127,16 @@ Public Class frmMain
         txtName.Text = String.Empty
         txtBirthdate.Text = String.Empty
         cboGender.SelectedIndex = 0
-        cboType.SelectedIndex = 0
-        cboBreed.SelectedIndex = 0
-        cboOwner.SelectedIndex = 0
+        If cboType.Items.Count > 0 Then
+            cboType.SelectedIndex = 0
+        End If
+        If cboBreed.Items.Count > 0 Then
+            cboBreed.SelectedIndex = 0
+        End If
+        If cboOwner.Items.Count > 0 Then
+            cboOwner.SelectedIndex = 0
+        End If
+
         txtNotes.Text = String.Empty
         cboStatus.SelectedIndex = 0
     End Sub
@@ -126,10 +144,22 @@ Public Class frmMain
     'button Update
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         Dim strQuery As String
+        'trim to remove white space
+        pet.Name = txtName.Text.Trim
+        pet.Birthdate = Date.ParseExact(txtBirthdate.Text, "dd/MM/yyyy", Nothing).ToString("MM/dd/yyyy")  'CDate(txtBirthdate.Text).ToString()
+        pet.Gender = cboGender.Text
+        pet.Breed = New petBreed(cboBreed.SelectedValue)
+        pet.Owner = New petOwner(cboOwner.SelectedValue)
+        pet.Notes = txtNotes.Text.Trim
+        pet.Status = cboStatus.Text
 
         Try
-            strQuery = "UPDATE tblpet SET petName = '" & txtName.Text & "', petBirthdate = '" & CDate(txtBirthdate.Text).ToString("yyyy-MM-dd") & "', petGender = '" & cboGender.Text & "', petBreed = " & cboBreed.SelectedValue.ToString & ", ownerID = " & cboOwner.SelectedValue.ToString & ", petNotes = '" & txtNotes.Text & "', petStatus='" & cboStatus.Text & "'  WHERE petID = " & txtID.Text
-            SQLManager(strQuery, "Record Updated.")
+            strQuery = $"UPDATE tblpet SET petName = '{pet.Name}', petBirthdate = '{Date.ParseExact(pet.Birthdate, "dd/MM/yyyy", Nothing).ToString("yyyy-MM-dd")}', petGender = '{pet.Gender}', petBreed = {pet.Breed.ID}, ownerID ={pet.Owner.ID}, petNotes = '{pet.Notes}', petStatus='{pet.Status}'  WHERE petID ={pet.ID}"
+            If SQLManager(strQuery) Then
+                'success audit
+                SQLManager(pet.Auditlog)
+            End If
+            'MsgBox(pet.Auditlog)
             txtID.Text = RecordCount("tblpet", "petID") + 1
             Status_RadioButton()
             Search_Data()
@@ -231,13 +261,13 @@ Public Class frmMain
     End Sub
 
     Private Sub LoadQueryToComboBox1(strQuery As String, v1 As String, v2 As String, cboType As ComboBox)
-        LoadToComboBox(strQuery, cboType, "typeID", "typeName")
+        LoadToComboBox(strQuery, cboType, "typeID", "typeName", "typeStatus")
     End Sub
     Private Sub LoadQueryToComboBox2(strQuery As String, v1 As String, v2 As String, cboBreed As ComboBox)
-        LoadToComboBox(strQuery, cboBreed, "breedID", "breedName")
+        LoadToComboBox(strQuery, cboBreed, "breedID", "breedName", "breedStatus")
     End Sub
     Private Sub LoadQueryToComboBox3(strQuery As String, v1 As String, v2 As String, cboOwner As ComboBox)
-        LoadToComboBox(strQuery, cboOwner, "ownerID", "ownerName")
+        LoadToComboBox(strQuery, cboOwner, "ownerID", "ownerName", "ownerStatus")
     End Sub
 
     Private Sub AboutPMSToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutPMSToolStripMenuItem.Click
@@ -257,7 +287,37 @@ Public Class frmMain
 
     Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         ExecuteLogout()
+
     End Sub
 
+    Private Sub MStype_Click(sender As Object, e As EventArgs) Handles MStype.Click
+        Dim form As New frmPetType
+        form.ShowDialog()
+    End Sub
 
+    Private Sub MSbreed_Click(sender As Object, e As EventArgs) Handles MSbreed.Click
+        Dim form As New frmBreed
+        form.ShowDialog()
+    End Sub
+
+    Private Sub MSowner_Click(sender As Object, e As EventArgs) Handles MSowner.Click
+        Dim form As New frmPetOwner
+        form.ShowDialog()
+    End Sub
+
+    Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
+
+        Dim form As New frmPrintPet
+        form.ShowDialog()
+        Dim strQuery As String = String.Empty
+        ExecutePrint(strQuery, "Print form")
+        'MsgBox(strQuery)
+        SQLManager(strQuery)
+
+    End Sub
+
+    Private Sub LogsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogsToolStripMenuItem.Click
+        Dim form As New frmAudit
+        form.ShowDialog()
+    End Sub
 End Class

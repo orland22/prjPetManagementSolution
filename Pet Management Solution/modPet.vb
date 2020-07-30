@@ -114,7 +114,13 @@ Module modPet
         Return String.Empty
     End Function
 
-    Public Sub LoadToComboBox(ByVal strSQL As String, ByRef combo As ComboBox, ByVal strValue As String, ByVal strDisplay As String)
+    Public Sub LoadToComboBox(ByVal strSQL As String, ByRef combo As ComboBox, ByVal strValue As String, ByVal strDisplay As String, strColumnStatus As String)
+        If strSQL.ToLower.Contains("where") Then
+            strSQL += $" AND {strColumnStatus} ='Active'"
+        Else
+            strSQL += $" WHERE {strColumnStatus} ='Active'"
+        End If
+        'MsgBox(strSQL)
         Dim dt = GetDataTable(strSQL)
         combo.DataSource = dt
         combo.ValueMember = dt.Columns(strValue).ToString
@@ -141,22 +147,20 @@ Module modPet
             dbconn.Close()
         End Try
     End Sub
-    Public Sub SQLManager(ByVal strSQL As String)
+    Public Function SQLManager(ByVal strSQL As String) As Boolean
         Try
             dbconn.Open()
             sqlcommand = New MySqlCommand(strSQL, dbconn)
             With sqlcommand
                 .CommandType = CommandType.Text
                 .ExecuteNonQuery()
-
             End With
             dbconn.Close()
+            Return True
         Catch ex As Exception
-            MessageBox.Show("Error: SQLManager()" & ex.Message, "pet dbms", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Finally
-            dbconn.Close()
+            Return False
         End Try
-    End Sub
+    End Function
     Public Sub ExecuteUnsuccessLog(intID As Integer)
         Dim strQuery As String = $"INSERT INTO tblauditlog (logDateTime, logType, userID, logModule, logComment ) VALUES
      (now(), 0, {intID}, 'Login ', 'INVALID username/password')"
@@ -180,9 +184,17 @@ Module modPet
         SQLManager(strQuery)
     End Sub
 
-    Public Sub ExecuteUpdateLog()
-
-    End Sub
+    Public Function ExecuteUpdateLog(ByRef strSQL As String, strForm As String, strColumn As String, strObject As String, intID As Integer, beforeValue As String, afterValue As String) As Boolean
+        If beforeValue <> afterValue Then
+            strSQL += $"INSERT INTO tblauditlog (logDateTime, logType, userID, logModule, logComment) VALUES
+     (now(), 3, {user.ID}, '{strForm} ', 'UPDATE {strColumn} of {strObject} - #{intID} FROM ""{beforeValue}"" to ""{afterValue}"" '); "
+            MsgBox($"{beforeValue} to {afterValue}")
+            'SQLManager(strQuery)
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 
     Public Sub ExecuteDeleteLog(strForm As String, strObject As String, intID As Integer)
         Dim strQuery As String = $"INSERT INTO tblauditlog (logDateTime, logType, userID, logModule, logComment) VALUES
@@ -192,8 +204,10 @@ Module modPet
 
     End Sub
 
-    Public Sub ExecutePrint()
+    Public Sub ExecutePrint(ByRef strQuery As String, strForm As String)
+        strQuery += $"INSERT INTO tblauditlog (logDateTime, logType, userID, logModule, logComment ) VALUES (now(), 5, {user.ID}, '{strForm}', 'Printed')"
 
+        SQLManager(strQuery)
     End Sub
 
     Public Sub ExecuteLogout()
